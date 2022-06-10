@@ -5,6 +5,7 @@ class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
+    this.usuariosPath = '/api/usuarios';
 
     //middlewares de mi aplicacion
     this.middlewares();
@@ -14,45 +15,20 @@ class Server {
   }
 
   middlewares() {
+    //Cors
     this.app.use(cors());
+    // parseo y lectura de jsons
+    this.app.use(express.json());
     this.app.use(express.static('public'));
   }
 
   routes() {
-    this.app.get('/api', (req, res) => {
-      res.json({
-        msg: 'get API',
-      });
-    });
-
-    this.app.post('/api', (req, res) => {
-      res.json({
-        msg: 'post API',
-      });
-    });
-
-    this.app.put('/api', (req, res) => {
-      res.json({
-        msg: 'put API',
-      });
-    });
-
-    this.app.patch('/api', (req, res) => {
-      res.json({
-        msg: 'patch API',
-      });
-    });
-
-    this.app.delete('/api', (req, res) => {
-      res.json({
-        msg: 'delete API',
-      });
-    });
+    this.app.use(this.usuariosPath, require('../routes/usuarios'));
   }
 
   listen() {
     this.app.listen(this.port, () => {
-      console.log('Aplicacion corriendo en el puerto', this.port);
+      console.log('Aplicación corriendo en el puerto', this.port);
     });
   }
 }
