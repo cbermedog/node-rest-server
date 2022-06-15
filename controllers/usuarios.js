@@ -59,15 +59,19 @@ const usuariosPut = async (req, res = response) => {
 };
 
 const usuariosDelete = async (req, res = response) => {
-  
   const id = req.params.id;
 
   // borrar registro fisico de la base de datos (No recomendado)
   // const usuario = await Usuario.findByIdAndDelete(id);
-  const usuario = await Usuario.findByIdAndUpdate(id, {status: false}, {new: true});
+  
+  const usuario = await Usuario.findByIdAndUpdate(
+    id,
+    { status: false },
+    { new: true }
+  );
 
   res.json({
-    usuario
+    usuario,
   });
 };
 
