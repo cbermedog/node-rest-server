@@ -2,7 +2,7 @@ const { response } = require('express');
 const { ObjectId } = require('mongoose').Types;
 const { Usuario, Categoria, Producto } = require('../models');
 
-const coleccionesPermitidas = ['usuarios', 'categorias', 'productos', 'roles'];
+const coleccionesPermitidas = ['usuarios', 'categorias', 'productos'];
 
 const buscarUsuario = async (termino = '', res = response) => {
   const isMongoId = ObjectId.isValid(termino);
