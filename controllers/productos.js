@@ -6,7 +6,7 @@ const obtenerProductos = async (req, res = response) => {
 
   const query = { estado: true };
 
-  const [categoria, total] = await Promise.all([
+  const [productos, total] = await Promise.all([
     Producto.find(query)
       .populate('usuario', 'nombre')
       .populate('categoria', 'nombre')
@@ -16,7 +16,7 @@ const obtenerProductos = async (req, res = response) => {
   ]);
 
   res.json({
-    categoria,
+    productos,
     total,
   });
 };

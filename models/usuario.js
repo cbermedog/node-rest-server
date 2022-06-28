@@ -14,7 +14,7 @@ const SchemaUsuario = new Schema({
     type: String,
     required: [true, 'La contraseña es obligatoria.'],
   },
-  imagen: {
+  img: {
     type: String,
   },
   role: {
@@ -33,7 +33,7 @@ const SchemaUsuario = new Schema({
 });
 
 SchemaUsuario.methods.toJSON = function () {
-  const { __v, password, _id, ...usuario } = this.toObject();
+  const { __v, password, _id, imagen, ...usuario } = this.toObject();
   usuario.uid = _id;
   return usuario;
 };
